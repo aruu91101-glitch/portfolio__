@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Арууке Исирова · Портфолио</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #e7bdba;
+      font-family: 'Inter', sans-serif;
+      color: #1e2a2f;
+      padding: 2rem 1.5rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #d7aaaa;
+      border-radius: 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      padding: 2rem 2rem 3rem;
+    }
+    .resume-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #e8e0d3;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .name-title h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: #1e2f3a;
+      margin-bottom: 0.4rem;
+    }
+    .badge-future {
+      background: #e9e1d6;
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+    .profile-photo-area {
+      background: #f8f4ed;
+      padding: 0.5rem;
+      border-radius: 2rem;
+      text-align: center;
+      width: 180px;
+      position: relative;
+    }
+    .photo-wrapper {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ddd2c2;
+      margin: 0 auto 0.7rem;
+      border: 3px solid white;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+    }
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Кнопка загрузки фото скрыта */
+    .upload-btn {
+      display: none !important;
+    }
+    #photoUpload {
+      display: none !important;
+    }
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      background: #fefbf7;
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+    }
+    .about-text { flex: 2; }
+    .about-text h3, .skills-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #cbad7a;
+      padding-left: 1rem;
+    }
+    .hobby-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+    .hobby-item {
+      background: #eae2d6;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skills-block { flex: 1.5; }
+    .skill-tag {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+    .skill-tag span {
+      background: white;
+      border: 1px solid #d9cebf;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .address-block {
+      margin-top: 1.2rem;
+      background: #f2ede6;
+      padding: 0.7rem 1rem;
+      border-radius: 1rem;
+      display: inline-block;
+    }
+    .skills-table {
+      margin: 2rem 0;
+      background: #fefaf5;
+      border-radius: 1.2rem;
+      padding: 1rem 1.5rem;
+    }
+    .grid-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+    }
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffffd9;
+      padding: 0.5rem 1rem;
+      border-radius: 60px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .portfolio-section {
+      margin: 2.8rem 0 2rem;
+    }
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+    .work-item {
+      background: #fefaf5;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      transition: 0.25s ease;
+      cursor: pointer;
+      border: 1px solid #ece3d9;
+    }
+    .work-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+      border-color: #cbad7a;
+    }
+    .work-img {
+      width: 100%;
+      height: 200px;
+      background: #e7dfd4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #ad9279;
+      overflow: hidden;
+      position: relative;
+    }
+    .work-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .work-category-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      backdrop-filter: blur(4px);
+    }
+    .work-info { padding: 1rem; }
+    .work-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    .work-desc {
+      font-size: 0.85rem;
+      color: #6b5c4b;
+    }
+    .work-link {
+      font-size: 0.7rem;
+      color: #cbad7a;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+    
+    /* ===== СОЦИАЛЬНЫЕ СЕТИ ===== */
+    .social-section {
+      margin-top: 2rem;
+      background: #f5efe7;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+    }
+    .social-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #cbad7a;
+      padding-left: 1rem;
+    }
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .social-card {
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      text-align: center;
+      min-width: 140px;
+      transition: 0.3s ease;
+      cursor: pointer;
+      border: 1px solid #ece3d9;
+      text-decoration: none;
+      color: #1e2a2f;
+    }
+    .social-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.2);
+      border-color: #cbad7a;
+    }
+    .social-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .social-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .social-link-text {
+      font-size: 0.65rem;
+      color: #6b5c4b;
+      margin-top: 0.2rem;
+      display: block;
+      word-break: break-all;
+    }
+    .social-card.instagram .social-icon { color: #E4405F; }
+    .social-card.telegram .social-icon { color: #0088cc; }
+    .social-card.tiktok .social-icon { color: #000000; }
+    .social-card.phone .social-icon { color: #25D366; }
+
+    .toast-message {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2c2823;
+      color: #f0e5d8;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.7rem;
+      color: #ac9a83;
+    }
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      .name-title h1 { font-size: 2rem; }
+      .profile-photo-area { width: 100%; }
+      .works-grid { grid-template-columns: 1fr; }
+      .social-grid { gap: 1rem; }
+      .social-card { min-width: 100px; padding: 0.8rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- ШАПКА -->
+  <div class="resume-header">
+    <div class="name-title">
+      <h1>Арууке Исирова</h1>
+      <div style="font-size: 1.1rem; font-weight: 500;">🎨 Графический дизайнер · 17 лет</div>
+      <div class="badge-future"><i class="fas fa-star"></i> Творческий подход · Визуальные решения</div>
+    </div>
+    <div class="profile-photo-area">
+      <div class="photo-wrapper">
+        <!-- ⬇️ ЗАМЕНИ ЭТУ ССЫЛКУ НА СВОЁ ФОТО ⬇️ -->
+        <img id="profileImg" src="photo_2026-03-03_14-31-15 (2).lnk" alt="Арууке">
+      </div>
+      <!-- Кнопка загрузки фото скрыта -->
+      <input type="file" id="photoUpload" accept="image/jpeg,image/png,image/jpg" style="display: none;">
+    </div>
+  </div>
+
+  <!-- О СЕБЕ -->
+  <div class="about-grid">
+    <div class="about-text">
+      <h3><i class="fas fa-user-astronaut"></i> О себе</h3>
+      <div class="intro-line">✨ Привет! Я Арууке — будущий графический дизайнер, создаю эмоции через визуал. Мне 17, и я постоянно учусь новому.</div>
+      <div><strong>Хобби:</strong></div>
+      <div class="hobby-list">
+        <span class="hobby-item"><i class="fas fa-paintbrush"></i> Рисовать</span>
+        <span class="hobby-item"><i class="fas fa-camera"></i> Фотографировать</span>
+        <span class="hobby-item"><i class="fas fa-utensils"></i> Готовить</span>
+        <span class="hobby-item"><i class="fas fa-horse"></i> Кататься на лошадях</span>
+      </div>
+      <div class="address-block"><i class="fas fa-map-pin"></i> Адрес: Osh, Gulcha, street: N.Sarbashov 23</div>
+    </div>
+    <div class="skills-block">
+      <h3><i class="fas fa-code"></i> Проф. навыки</h3>
+      <div class="skill-tag">
+        <span><i class="fas fa-chalkboard-user"></i> Presentation</span>
+        <span><i class="fab fa-adobe"></i> Adobe InDesign</span>
+        <span><i class="fas fa-link"></i> Taplink</span>
+        <span><i class="fab fa-html5"></i> HTML&CSS</span>
+        <span><i class="fas fa-pen-fancy"></i> Canva</span>
+        <span><i class="fab fa-figma"></i> Figma</span>
+        <span><i class="fas fa-palette"></i> CorelDRAW</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ИНСТРУМЕНТЫ -->
+  <div class="skills-table">
+    <h3><i class="fas fa-laptop-code"></i> Инструменты дизайна</h3>
+    <div class="grid-skills">
+      <div class="skill-item"><i class="fab fa-adobe" style="color:#ff7c00;"></i> <strong>Ai</strong> — Illustrator</div>
+      <div class="skill-item"><i class="fab fa-adobe" style="color:#c51f5f;"></i> <strong>Id</strong> — InDesign</div>
+      <div class="skill-item"><i class="fab fa-adobe" style="color:#31a8ff;"></i> <strong>Ps</strong> — Photoshop</div>
+      <div class="skill-item"><i class="fab fa-figma"></i> Figma</div>
+      <div class="skill-item"><i class="fas fa-vector-square"></i> CorelDRAW</div>
+    </div>
+  </div>
+
+  <!-- МОИ РАБОТЫ -->
+  <div class="portfolio-section">
+    <div class="portfolio-header">
+      <h3><i class="fas fa-images"></i> Мои проекты</h3>
+      <div class="note-add"><i class="fas fa-mouse-pointer"></i> Клик по карточке → открывает проект</div>
+    </div>
+    
+    <div class="works-grid" id="worksGrid"></div>
+  </div>
+
+  <!-- ===== СОЦИАЛЬНЫЕ СЕТИ (НОВЫЙ БЛОК) ===== -->
+  <div class="social-section">
+    <h3><i class="fas fa-share-alt"></i> Мои соц-сети</h3>
+    <div class="social-grid" id="socialGrid">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/llyillu__?utm_source=qr" target="_blank" class="social-card instagram">
+        <span class="social-icon"><i class="fab fa-instagram"></i></span>
+        <span class="social-name">Instagram</span>
+        <span class="social-link-text">@llyillu__</span>
+      </a>
+      <!-- Telegram -->
+      <a href="https://t.me/+qa12Bcm2iahmMjFi" target="_blank" class="social-card telegram">
+        <span class="social-icon"><i class="fab fa-telegram"></i></span>
+        <span class="social-name">Telegram</span>
+        <span class="social-link-text">Чат</span>
+      </a>
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@mdr5kvnaa_?_r=1&_t=ZS-97V1kgXsQpb" target="_blank" class="social-card tiktok">
+        <span class="social-icon"><i class="fab fa-tiktok"></i></span>
+        <span class="social-name">TikTok</span>
+        <span class="social-link-text">@mdr5kvnaa_</span>
+      </a>
+      <!-- Телефон -->
+      <a href="tel:+996558557661" class="social-card phone">
+        <span class="social-icon"><i class="fas fa-phone"></i></span>
+        <span class="social-name">Телефон</span>
+        <span class="social-link-text">+996 558 557 661</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>© Арууке Исирова — графический дизайн, визуальный стиль</footer>
+</div>
+
+<script>
+  // ============ ТВОИ РАБОТЫ (с твоими ссылками) ============
+  const worksArray = [
+    { 
+      title: "🎮 3D Quest Game", 
+      description: "Интерактивная 3D игра-квест", 
+      category: "🎮 Игра",
+      link: "https://aruu91101-glitch.github.io/3d-quis-game-/", 
+      imageData: null
+    },
+    { 
+      title: "📖 Книга обо мне", 
+      description: "Моя личная книга с историями и иллюстрациями", 
+      category: "📖 Книга",
+      link: "https://gemini.google.com/share/de94a4ff5117", 
+      imageData: null
+    }
+  ];
+
+  const categoryIcons = {
+    '🎮 Игра': 'fa-gamepad',
+    '📖 Книга': 'fa-book',
+    '🌐 Сайт': 'fa-globe',
+    '🎨 Дизайн': 'fa-palette',
+    '📱 Приложение': 'fa-mobile-alt'
+  };
+
+  function renderWorks() {
+    const grid = document.getElementById('worksGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = worksArray.map((work, idx) => {
+      const icon = categoryIcons[work.category] || 'fa-folder';
+      return `
+        <div class="work-item" data-link="${work.link || '#'}" data-idx="${idx}">
+          <div class="work-img">
+            ${work.imageData ? 
+              `<img src="${work.imageData}" alt="${work.title}">` : 
+              `<i class="fas ${icon}" style="font-size:4rem; opacity:0.4;"></i>`
+            }
+            <span class="work-category-badge">${work.category || '🎨 Дизайн'}</span>
+          </div>
+          <div class="work-info">
+            <div class="work-title">${escapeHtml(work.title)}</div>
+            <div class="work-desc">${escapeHtml(work.description || '')}</div>
+            <div class="work-link"><i class="fas fa-link"></i> Открыть проект</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    document.querySelectorAll('.work-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const link = el.getAttribute('data-link');
+        if (link && link !== '#' && link.startsWith('http')) {
+          window.open(link, '_blank');
+        } else {
+          showToast('У этого проекта нет ссылки');
+        }
+      });
+    });
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>"]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      if (m === '"') return '&quot;';
+      return m;
+    });
+  }
+
+  function showToast(message, duration = 2500) {
+    const existing = document.querySelector('.toast-message');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'toast-message';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), duration);
+  }
+
+  // ============ ЗАПУСК ============
+  renderWorks();
+</script>
+</body>
+</html>
